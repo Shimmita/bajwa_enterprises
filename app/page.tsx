@@ -3,20 +3,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import {
-  Wrench,
   ShieldCheck,
-  Tag,
-  Headphones,
-  MapPin,
-  Clock,
+  Award,
+  Layers,
+  HeartHandshake,
   Phone,
+  Mail,
+  MapPin,
   MessageSquare,
-  ExternalLink,
-  ChevronRight,
-  PackageCheck,
-  CheckCircle2,
+  Smile,
   Truck,
-  Sparkles,
+  CheckCircle,
 } from "lucide-react";
 
 import tukImage from "../public/tuk.png";
@@ -27,10 +24,25 @@ import filters from "../public/filters.jpg";
 import gear from "../public/gear.jpg";
 import tyre from "../public/tyre.jpg";
 import brakes_suspension from "../public/brakes_suspension.jpg";
-import quality from "../public/best.avif";
-import fair_price from "../public/fair_price.jpg";
-import mechanic from "../public/mechanic.avif";
+import logo from "../public/logo.jpeg";
 import MapViewSection from "./components/mapview";
+
+// Inline brand SVGs to prevent dependency issues
+function FacebookIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    </svg>
+  );
+}
 
 export default function BajwaEnterprises() {
   const [inquiryText, setInquiryText] = useState("");
@@ -40,7 +52,7 @@ export default function BajwaEnterprises() {
     e.preventDefault();
     if (inquiryText.length < 10) return;
     const encodedText = encodeURIComponent(
-      `Hello Bajwa Enterprises, I have a quick inquiry:\n\n${inquiryText}`
+      `Hello Bajwa Enterprises, I have an inquiry:\n\n${inquiryText}`
     );
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodedText}`,
@@ -48,400 +60,312 @@ export default function BajwaEnterprises() {
     );
   };
 
-  // Category data with curated motorcycle and tuk-tuk relevant Unsplash images
-  const categories = [
+  const whyChooseUsData = [
     {
-      title: "Engine & Clutch",
-      items: "Plates • Bearings • Rings • Gaskets",
-      icon: <Wrench className="w-6 h-6 text-white" />,
-      bgImage: tuk_engine,
-      color: "from-[#0d2a28]/85 via-[#18534d]/80 to-[#206E66]/75",
+      title: "QUALITY",
+      description: "We provide genuine and high-quality spares.",
+      icon: <Award className="w-8 h-8 text-[#E11D23]" />,
     },
     {
-      title: "Brakes & Suspension",
-      items: "Shoes • Pads • Shocks • Springs",
-      icon: <ShieldCheck className="w-6 h-6 text-white" />,
-      bgImage: brakes_suspension,
-      color: "from-[#0f212d]/85 via-[#163a4d]/80 to-[#206E66]/75",
+      title: "RELIABILITY",
+      description: "Always dependable, always on time.",
+      icon: <ShieldCheck className="w-8 h-8 text-[#E11D23]" />,
     },
     {
-      title: "Electrical",
-      items: "Bulbs • Switches • Wiring Sets",
-      icon: <PackageCheck className="w-6 h-6 text-white" />,
-      bgImage: lights,
-      color: "from-[#0a2323]/85 via-[#134945]/80 to-[#206E66]/75",
+      title: "WIDE RANGE",
+      description: "Huge selection of parts for all tuk tuk models.",
+      icon: <Layers className="w-8 h-8 text-[#E11D23]" />,
     },
     {
-      title: "Filters & Air Cleaners",
-      items: "Oil • Air • Fuel • Rubber Hoses",
-      icon: <Wrench className="w-6 h-6 text-white" />,
-      bgImage: filters,
-      color: "from-[#142328]/85 via-[#1b4348]/80 to-[#206E66]/75",
-    },
-    {
-      title: "Transmission & Gears",
-      items: "Chains • Sprockets • Shafts • Bearings",
-      icon: <ShieldCheck className="w-6 h-6 text-white" />,
-      bgImage: gear,
-      color: "from-[#112526]/85 via-[#1c4d4a]/80 to-[#206E66]/75",
-    },
-    {
-      title: "Tyres & Lubricants",
-      items: "Tyres • Tubes • Grease • Oils",
-      icon: <PackageCheck className="w-6 h-6 text-white" />,
-      bgImage: tyre,
-      color: "from-[#0b2426]/85 via-[#154648]/80 to-[#206E66]/75",
+      title: "TRUST",
+      description: "Building strong relationships with our valued partners.",
+      icon: <HeartHandshake className="w-8 h-8 text-[#E11D23]" />,
     },
   ];
 
-  const whyUsItems = [
+  const topCategories = [
+    { name: "ENGINE PARTS", image: tuk_engine },
+    { name: "SUSPENSION PARTS", image: brakes_suspension },
+    { name: "BRAKE PARTS", image: gear },
+    { name: "ELECTRICAL PARTS", image: lights },
+    { name: "BODY PARTS", image: tyre },
+  ];
+
+  const stats = [
     {
-      title: "Genuine Parts",
-      description:
-        "Imported directly from trusted partners in India, Pakistan & China to guarantee optimal durability.",
-      icon: quality,
+      icon: <Layers className="w-7 h-7 text-[#E11D23]" />,
+      value: "500+",
+      label: "Products",
     },
     {
-      title: "Fair Pricing",
-      description:
-        "Competitive wholesale & retail rates with consistent stock availability year-round.",
-      icon: fair_price,
+      icon: <Smile className="w-7 h-7 text-[#E11D23]" />,
+      value: "50+",
+      label: "Happy Dealers",
     },
     {
-      title: "Expert Support",
-      description:
-        "A technical team that deeply understands tuk-tuk engine and drive-train mechanics.",
-      icon: mechanic,
+      icon: <Truck className="w-7 h-7 text-[#E11D23]" />,
+      value: "10+",
+      label: "Brands",
+    },
+    {
+      icon: <CheckCircle className="w-7 h-7 text-[#E11D23]" />,
+      value: "100%",
+      label: "Customer Satisfaction",
     },
   ];
 
   return (
-    <div className="bg-[#FEFEFE] text-gray-900 min-h-screen font-sans selection:bg-[#206E66] selection:text-[#FEFEFE]">
-
-
-
-      {/* ===== NAVIGATION ===== */}
-      <header className="sticky top-0 z-50 bg-[#FEFEFE]/95 backdrop-blur-md border-b border-gray-100/80 shadow-sm">
+    <div className="bg-[#FFFFFF] text-gray-900 min-h-screen font-sans selection:bg-[#E11D23] selection:text-white">
+      {/* ===== HEADER & NAVBAR ===== */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#206E66] text-[#FEFEFE] font-black text-xl rounded-xl flex items-center justify-center shadow-md shadow-[#206E66]/20">
-              B
+            <div className="w-11 h-11 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
+              <Image
+                src={logo}
+                alt="Bajwa Enterprises Logo"
+                width={44}
+                height={44}
+                className="object-cover"
+              />
             </div>
             <div>
-              <span className="text-xl font-extrabold tracking-tight text-gray-900 block leading-none">
-                BAJWA<span className="text-[#206E66]">.</span>
+              <span className="text-xl font-black tracking-tight text-gray-900 block leading-none">
+                BAJWA<span className="text-[#E11D23]">.</span>
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#67777E]">
-                Enterprises
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#E11D23]">
+                — ENTERPRISES —
               </span>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold text-[#67777E]">
-            <a href="#about" className="hover:text-[#206E66] transition-colors relative group">
-              About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#206E66] transition-all group-hover:w-full"></span>
+          {/* Nav Links */}
+          <nav className="hidden md:flex items-center space-x-7 text-xs font-bold uppercase tracking-wider text-gray-700">
+            <a href="#" className="text-[#E11D23] transition-colors font-extrabold">
+              Home
             </a>
-            <a href="#products" className="hover:text-[#206E66] transition-colors relative group">
+            <a href="#about" className="hover:text-[#E11D23] transition-colors">
+              About Us
+            </a>
+            <a href="#categories" className="hover:text-[#E11D23] transition-colors">
               Products
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#206E66] transition-all group-hover:w-full"></span>
             </a>
-            <a href="#why-us" className="hover:text-[#206E66] transition-colors relative group">
-              Why Us
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#206E66] transition-all group-hover:w-full"></span>
+            <a href="#brands" className="hover:text-[#E11D23] transition-colors">
+              Brands
             </a>
-            <a href="#contact" className="hover:text-[#206E66] transition-colors relative group">
+            <a href="#why-us" className="hover:text-[#E11D23] transition-colors">
+              Services
+            </a>
+            <a href="#contact" className="hover:text-[#E11D23] transition-colors">
               Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#206E66] transition-all group-hover:w-full"></span>
             </a>
           </nav>
 
+          {/* Direct Call Action */}
           <a
-            href={`https://wa.me/${whatsappNumber}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#206E66] hover:bg-[#18534d] text-[#FEFEFE] px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-[#206E66]/20 hover:shadow-lg transition-all hover:-translate-y-0.5"
+            href="tel:+254745131313"
+            className="flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#E11D23] transition-colors"
           >
-            <MessageSquare className="w-4 h-4 fill-current" /> WhatsApp
+            <Phone className="w-4 h-4 text-[#E11D23]" />
+            <span>0745 131313</span>
           </a>
         </div>
       </header>
 
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Hero Background Image - Tuk-tuk / Auto Rickshaw */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={tukImage}
-            alt="Tuk-tuk on the road in Mombasa"
-            className="object-cover"
-            height={750}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1a1a]/90 via-[#0a1a1a]/70 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FEFEFE]/5 to-transparent"></div>
+      {/* ===== HERO SECTION WITH RED ACCENTS ===== */}
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-gray-100">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-2/3 h-full pointer-events-none -z-0 opacity-15 overflow-hidden">
+          <div className="absolute right-[-10%] top-[-20%] w-[650px] h-[650px] rounded-full border-[60px] border-[#E11D23]" />
+          <div className="absolute right-[10%] bottom-[-10%] w-[450px] h-[450px] rounded-full border-[30px] border-[#E11D23]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-[#206E66]/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-6 border border-[#206E66]/20 text-[#FEFEFE]">
-              <Truck className="w-3.5 h-3.5" /> Tuk-tuk & Three-Wheeler Spares • Mombasa
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#FEFEFE] tracking-tight leading-[1.1] mb-6">
-              Genuine Tuk-tuk
-              <span className="text-[#206E66] block">Spare Parts.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-[#D1D5DB] leading-relaxed mb-8 max-w-xl">
-              We stock high-quality, durable parts for{" "}
-              <strong className="text-white">Piaggio Ape</strong>,{" "}
-              <strong className="text-white">TVS King</strong>,{" "}
-              <strong className="text-white">Bajaj RE</strong> &{" "}
-              <strong className="text-white">Atul Elite</strong>.
-              Visit us on Mwabundu Rd or message us for instant pricing.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
-              <a
-                href={`https://wa.me/${whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#206E66] hover:bg-[#18534d] text-[#FEFEFE] px-8 py-4 rounded-xl font-bold text-base shadow-lg shadow-[#206E66]/30 transition-all hover:-translate-y-0.5 hover:shadow-[#206E66]/40"
-              >
-                <MessageSquare className="w-5 h-5 fill-current" /> WhatsApp Community
-              </a>
-              <a
-                href="#products"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-base transition-all"
-              >
-                Browse Products <ChevronRight className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Hero Metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-lg">
-              <div>
-                <span className="text-3xl font-black text-[#206E66] block">1000+</span>
-                <span className="text-sm font-semibold text-[#D1D5DB]">Parts in Stock</span>
-              </div>
-              <div>
-                <span className="text-3xl font-black text-[#206E66] block">4+</span>
-                <span className="text-sm font-semibold text-[#D1D5DB]">Brands Covered</span>
-              </div>
-              <div>
-                <span className="text-3xl font-black text-[#206E66] block">Fast</span>
-                <span className="text-sm font-semibold text-[#D1D5DB]">Dispatch</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== ABOUT SECTION ===== */}
-      <section id="about" className="py-24 bg-[#FEFEFE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* About Image - Motorcycle / Tuk-tuk Workshop */}
-            <div className="relative order-2 lg:order-1">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#206E66]/10">
-                <Image
-                  src={tukImage2}
-                  alt="Bajwa Enterprises spare parts store with motorcycle and tuk-tuk parts"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#206E66]/10 to-transparent"></div>
-              </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-4 bg-[#206E66] text-white px-6 py-4 rounded-2xl shadow-lg shadow-[#206E66]/30">
-                <span className="text-2xl font-black block leading-none">10+</span>
-                <span className="text-xs font-medium opacity-80">Years Experience</span>
-              </div>
-            </div>
-
-            {/* About Content */}
-            <div className="space-y-6 order-1 lg:order-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#206E66] bg-[#206E66]/10 px-4 py-1.5 rounded-full inline-block">
-                About Bajwa Enterprises
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-                Your trusted single-source spare parts hub in Mombasa.
-              </h2>
-              <p className="text-[#67777E] leading-relaxed text-lg">
-                We are a specialist tuk-tuk & three-wheeler spare parts store serving
-                mechanics, drivers, and fleet owners across Mombasa and Kenya. We focus
-                on genuine, durable components with competitive pricing and fast,
-                friendly support.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            {/* Left Copy */}
+            <div className="lg:col-span-6 space-y-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.08] tracking-tight">
+                QUALITY SPARES. <br />
+                <span className="text-[#E11D23]">TRUSTED BRANDS.</span> <br />
+                ALWAYS READY.
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                Dealers in all tuk tuk parts. <br />
+                <span className="text-gray-900 font-bold">Your Partner in Reliability.</span>
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                  <Clock className="w-6 h-6 text-[#206E66] mb-3" />
-                  <h4 className="font-bold text-gray-900 text-sm">Open Hours</h4>
-                  <p className="text-[#67777E] text-sm">Mon–Sat • 8:00–18:00</p>
-                  <p className="text-xs font-semibold text-[#206E66] mt-1">Sunday Closed</p>
-                </div>
-                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                  <Tag className="w-6 h-6 text-[#206E66] mb-3" />
-                  <h4 className="font-bold text-gray-900 text-sm">Wholesale & Retail</h4>
-                  <p className="text-[#67777E] text-sm">Bulk orders welcome</p>
-                  <p className="text-xs font-semibold text-[#206E66] mt-1">Consistent supply</p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["Piaggio Ape", "TVS King", "Bajaj RE", "Atul Elite"].map((model) => (
-                  <span
-                    key={model}
-                    className="inline-flex items-center gap-1.5 bg-[#FEFEFE] border border-gray-200 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-800 shadow-sm hover:border-[#206E66] transition-colors"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-[#206E66]" /> {model}
-                  </span>
-                ))}
+              <div className="pt-2">
+                <a
+                  href="#categories"
+                  className="inline-flex items-center justify-center bg-[#E11D23] hover:bg-[#b81419] text-white px-8 py-3.5 rounded font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all"
+                >
+                  Explore Products
+                </a>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ===== PRODUCTS / CATEGORIES ===== */}
-      <section id="products" className="py-24 bg-gray-50/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#206E66] bg-[#206E66]/10 px-4 py-1.5 rounded-full inline-block mb-3">
-              Our Inventory
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-              Popular Categories
-            </h2>
-            <p className="text-[#67777E] mt-3">
-              Ask us on WhatsApp for specific part numbers or availability.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat, idx) => (
-              <div
-                key={idx}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                {/* Category Background Image */}
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src={cat.bgImage}
-                    alt={cat.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${cat.color}`}></div>
-                </div>
-
-                <div className="relative z-10 p-8 min-h-[220px] flex flex-col justify-between text-white">
-                  <div>
-                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-5 shadow-lg">
-                      {cat.icon}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 tracking-tight">{cat.title}</h3>
-                    <p className="text-white/80 text-sm leading-relaxed">{cat.items}</p>
-                  </div>
-
-                  <a
-                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                      `Hi Bajwa Enterprises, I am inquiring about parts in your category: ${cat.title}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-white/90 hover:text-white transition-colors pt-4 mt-4 border-t border-white/20 group-hover:border-white/40"
-                  >
-                    Order on WhatsApp <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
+            {/* Right Hero Tuk-tuk Image */}
+            <div className="lg:col-span-6 flex justify-center relative">
+              <div className="relative w-full max-w-lg aspect-[4/3]">
+                <Image
+                  src={tukImage}
+                  alt="Bajwa Enterprises Tuk-Tuk Parts"
+                  fill
+                  priority
+                  className="object-contain drop-shadow-2xl"
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== WHY CHOOSE US ===== */}
-      <section id="why-us" className="py-24 bg-[#FEFEFE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#206E66] bg-[#206E66]/10 px-4 py-1.5 rounded-full inline-block mb-3 border border-[#206E66]/15">
-              Why Bajwa
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+      <section id="why-us" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block mb-12">
+            <h2 className="text-2xl font-black tracking-wider uppercase text-gray-900">
               Why Choose Us
             </h2>
-            <p className="text-[#67777E] mt-3 text-base">
-              Built on quality, trust, and deep technical understanding.
-            </p>
+            <div className="w-10 h-1 bg-[#E11D23] mx-auto mt-2 rounded-full" />
           </div>
 
-          {/* Feature Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {whyUsItems.map((item, idx) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whyChooseUsData.map((item, index) => (
               <div
-                key={idx}
-                className="group text-center p-8 rounded-3xl bg-white border border-gray-100/80 shadow-sm hover:shadow-xl hover:border-[#206E66]/20 transition-all duration-300 hover:-translate-y-1.5"
+                key={index}
+                className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow text-center flex flex-col items-center justify-center space-y-3"
               >
-                {/* Clean White Image Wrapper (No Background / No Hover Filter Impact) */}
-                <div className="w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                  <Image
-                    src={item.icon}
-                    alt={item.title}
-                    width={70}
-                    height={70}
-                    className="object-contain"
-                  />
+                <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-1">
+                  {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-[#67777E] text-sm leading-relaxed max-w-xs mx-auto">
+                <h3 className="text-xs font-black tracking-wider text-gray-900 uppercase">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed">
                   {item.description}
                 </p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Brand Trust Banner */}
-          <div className="mt-16 bg-[#206E66]/5 rounded-3xl p-8 border border-[#206E66]/15 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#206E66] text-white rounded-2xl flex items-center justify-center shadow-md shadow-[#206E66]/20 shrink-0">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-sm font-bold text-gray-900 block">
-                  100% Genuine Parts Guarantee
-                </span>
-                <span className="text-xs text-[#67777E] font-medium">
-                  Sourced directly from trusted global suppliers
-                </span>
-              </div>
-            </div>
+      {/* ===== OUR TOP CATEGORIES ===== */}
+      <section id="categories" className="py-20 bg-gray-50/70 border-t border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block mb-12">
+            <h2 className="text-2xl font-black tracking-wider uppercase text-gray-900">
+              Our Top Categories
+            </h2>
+            <div className="w-10 h-1 bg-[#E11D23] mx-auto mt-2 rounded-full" />
+          </div>
 
-            <div className="flex items-center gap-6">
-              <span className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-                <CheckCircle2 className="w-5 h-5 text-[#206E66]" /> Wholesale & Retail
-              </span>
-              <span className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-                <CheckCircle2 className="w-5 h-5 text-[#206E66]" /> Fast Dispatch
-              </span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
+            {topCategories.map((cat, index) => (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group flex flex-col items-center"
+              >
+                <div className="relative w-full h-32 mb-3 overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
+                  <Image
+                    src={cat.image}
+                    alt={cat.name}
+                    fill
+                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-gray-800 text-center">
+                  {cat.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+              "Hello Bajwa Enterprises, I would like to see your complete spare parts catalog."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-[#E11D23] hover:bg-[#b81419] text-white px-8 py-3 rounded font-bold text-xs uppercase tracking-widest shadow-md transition-colors"
+          >
+            View All Products
+          </a>
+        </div>
+      </section>
+
+      {/* ===== ABOUT US (ANGLED BANNER LAYOUT) ===== */}
+      <section id="about" className="relative bg-[#1A1F24] text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 min-h-[420px]">
+          {/* Text Side */}
+          <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-6 relative z-10 bg-[#1A1F24]">
+            <h2 className="text-2xl sm:text-3xl font-black tracking-wider uppercase text-white">
+              About Us
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+              Bajwa Enterprises is committed to supplying top-quality tuk tuk parts to dealers and workshops across Mombasa and Kenya. Our mission is to ensure your vehicles stay on the road with reliability and performance.
+            </p>
+
+            <div>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-900 px-6 py-2.5 rounded font-bold text-xs uppercase tracking-wider transition-colors"
+              >
+                Learn More
+              </a>
             </div>
+          </div>
+
+          {/* Image Side */}
+          <div className="lg:col-span-6 relative min-h-[300px] lg:min-h-full">
+            <Image
+              src={tukImage2}
+              alt="Bajwa Enterprises Workshop and Warehouse"
+              fill
+              className="object-cover"
+            />
+            <div
+              className="hidden lg:block absolute inset-y-0 left-0 w-24 bg-[#1A1F24]"
+              style={{
+                clipPath: "polygon(0 0, 0 100%, 100% 100%)",
+              }}
+            />
           </div>
         </div>
       </section>
 
-      <div className="px-10 lg:px-20 ">
-        <div className="lg:col-span-7">
-          <div className="bg-white p-8 md:p-10 rounded-3xl border border-gray-100 shadow-lg shadow-gray-100/50">
+      {/* ===== METRICS / STATS BAR ===== */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="flex flex-col items-center space-y-2">
+                <div className="p-3 bg-red-50 rounded-full">{stat.icon}</div>
+                <span className="text-3xl font-black text-gray-900 tracking-tight">
+                  {stat.value}
+                </span>
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== QUICK ENQUIRY SECTION ===== */}
+      <section id="contact" className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gray-50 p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-sm">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 bg-[#206E66]/10 rounded-2xl flex items-center justify-center shrink-0">
-                <MessageSquare className="w-6 h-6 text-[#206E66]" />
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center shrink-0">
+                <MessageSquare className="w-6 h-6 text-[#E11D23]" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900">Quick Enquiry</h3>
-                <p className="text-[#67777E] text-sm">
-                  Send your part number, model, and quantity. We'll reply via WhatsApp immediately.
+                <p className="text-gray-500 text-sm">
+                  Send your part number, model, and quantity. We will reply via WhatsApp immediately.
                 </p>
               </div>
             </div>
@@ -452,42 +376,150 @@ export default function BajwaEnterprises() {
                   rows={4}
                   value={inquiryText}
                   onChange={(e) => setInquiryText(e.target.value)}
-                  placeholder="Example: I need clutch plates and front brake shoes for a TVS King 2021 model."
-                  className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#206E66] focus:border-transparent text-sm resize-none"
+                  placeholder="Example: Need clutch plate set for Bajaj RE, 3 units..."
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#E11D23] focus:border-transparent text-sm resize-none bg-white"
                   required
-                ></textarea>
+                />
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#206E66] hover:bg-[#18534d] text-white py-4 rounded-2xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                className="w-full bg-[#E11D23] hover:bg-[#b81419] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4 fill-current" /> Send Enquiry via WhatsApp
               </button>
             </form>
           </div>
         </div>
-      </div>
+      </section>
 
-
-      {/* mapview section */}
+      {/* ===== MAP LOCATION ===== */}
       <MapViewSection />
 
       {/* ===== FOOTER ===== */}
-      <footer className="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <span className="text-lg font-black text-white tracking-tight">
-              BAJWA<span className="text-[#206E66]">.</span> Enterprises
-            </span>
-            <p className="text-xs text-gray-500 mt-1">
-              © {new Date().getFullYear()} Bajwa Enterprises. All rights reserved.
-            </p>
+      <footer className="bg-white text-gray-800 pt-16 pb-8 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            {/* Col 1: Brand Info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-gray-200 shadow-sm">
+                  <Image
+                    src={logo}
+                    alt="Bajwa Enterprises Logo"
+                    width={40}
+                    height={40}
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <span className="text-xl font-black tracking-tight text-gray-900 block leading-none">
+                    BAJWA<span className="text-[#E11D23]">.</span>
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#E11D23]">
+                    — ENTERPRISES —
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                Your premier source for high-quality, genuine tuk-tuk spare parts in Mombasa and Kenya.
+              </p>
+            </div>
+
+            {/* Col 2: Quick Links */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-wider text-gray-900">
+                Quick Links
+              </h4>
+              <ul className="space-y-2 text-xs font-medium text-gray-600">
+                <li>
+                  <a href="#" className="hover:text-[#E11D23] transition-colors">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" className="hover:text-[#E11D23] transition-colors">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#categories" className="hover:text-[#E11D23] transition-colors">
+                    Products
+                  </a>
+                </li>
+                <li>
+                  <a href="#brands" className="hover:text-[#E11D23] transition-colors">
+                    Brands
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:text-[#E11D23] transition-colors">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Col 3: Products */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-wider text-gray-900">
+                Products
+              </h4>
+              <ul className="space-y-2 text-xs font-medium text-gray-600">
+                <li>Engine Parts</li>
+                <li>Suspension Parts</li>
+                <li>Brake Parts</li>
+                <li>Electrical Parts</li>
+                <li>Body Parts</li>
+              </ul>
+            </div>
+
+            {/* Col 4: Contact Us */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-wider text-gray-900">
+                Contact Us
+              </h4>
+              <ul className="space-y-2 text-xs text-gray-600">
+                <li className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-[#E11D23]" />
+                  <span>0745 131313</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#E11D23]" />
+                  <span>info@bajwaenterprises.co.ke</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-[#E11D23] shrink-0 mt-0.5" />
+                  <span>Mombasa, Kenya</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="flex gap-6 text-sm">
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#products" className="hover:text-white transition-colors">Products</a>
-            <a href="#why-us" className="hover:text-white transition-colors">Why Us</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+
+          {/* Sub-Footer */}
+          <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+            <p>© 2026 Bajwa Enterprises. All Rights Reserved.</p>
+            <div className="flex items-center gap-4 text-gray-600">
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#E11D23] hover:text-white transition-colors"
+              >
+                <MessageSquare className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#E11D23] hover:text-white transition-colors"
+              >
+                <FacebookIcon className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#E11D23] hover:text-white transition-colors"
+              >
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </footer>

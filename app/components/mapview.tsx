@@ -11,113 +11,121 @@ export default function MapViewSection() {
     "https://maps.google.com/maps?q=-4.0518939,39.6616395&hl=en&z=16&output=embed";
 
   return (
-    <section id="location" className="py-24 bg-[#FEFEFE]">
+    <section id="location" className="py-20 bg-gray-50/70 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#206E66] bg-[#206E66]/10 px-4 py-1.5 rounded-full inline-block mb-3 border border-[#206E66]/15">
-            Visit Our Store
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Find Us in Mombasa
-          </h2>
-          <p className="text-[#67777E] mt-3 text-base">
-            Located along Mwabundu Road. Stop by for direct spare parts pickup or technical consultations.
+        <div className="text-center mb-12">
+          <div className="inline-block">
+            <h2 className="text-2xl font-black tracking-wider uppercase text-gray-900">
+              Visit Our Store
+            </h2>
+            <div className="w-10 h-1 bg-[#E11D23] mx-auto mt-2 rounded-full" />
+          </div>
+          <p className="text-gray-500 mt-3 text-xs sm:text-sm max-w-xl mx-auto">
+            Located along Mwabundu Road, Mombasa. Stop by for direct spare parts pickup or technical consultations.
           </p>
         </div>
 
         {/* Map & Location Card Container */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid lg:grid-cols-12 gap-6 items-stretch">
           {/* Location Info Card */}
-          <div className="lg:col-span-4 bg-white p-8 rounded-3xl border border-gray-100 shadow-lg shadow-gray-100/60 flex flex-col justify-between">
+          <div className="lg:col-span-4 bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center gap-3 pb-6 border-b border-gray-100">
-                <div className="w-12 h-12 rounded-2xl bg-[#206E66]/10 text-[#206E66] flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-[#E11D23] flex items-center justify-center shrink-0">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-extrabold text-gray-900 text-lg">
+                  <h3 className="font-black text-gray-900 text-base uppercase tracking-tight">
                     Bajwa Enterprises
                   </h3>
-                  <p className="text-xs font-semibold text-[#206E66]">
-                    Tuktuk & Three-Wheeler Spares
+                  <p className="text-[11px] font-bold text-[#E11D23] uppercase tracking-wider">
+                    Tuk-Tuk & Three-Wheeler Spares
                   </p>
                 </div>
               </div>
 
               {/* Address Details */}
-              <div className="space-y-4 text-sm">
+              <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#206E66] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#E11D23] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-gray-900 block">Physical Address</span>
-                    <p className="text-[#67777E]">
-                      WMX6+6MR, Mwabundu Rd,<br />
+                    <span className="font-bold text-gray-900 block uppercase tracking-wider text-[11px]">
+                      Physical Address
+                    </span>
+                    <p className="text-gray-600 mt-0.5">
+                      WMX6+6MR, Mwabundu Rd, <br />
                       Mombasa, Kenya
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Navigation className="w-5 h-5 text-[#206E66] shrink-0 mt-0.5" />
+                  <Navigation className="w-4 h-4 text-[#E11D23] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-gray-900 block">Postal Address</span>
-                    <p className="text-[#67777E]">P.O. Box 87353 – 80100 Mombasa</p>
+                    <span className="font-bold text-gray-900 block uppercase tracking-wider text-[11px]">
+                      Postal Address
+                    </span>
+                    <p className="text-gray-600 mt-0.5">P.O. Box 87353 – 80100 Mombasa</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-[#206E66] shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#E11D23] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-gray-900 block">Opening Hours</span>
-                    <p className="text-[#67777E]">Monday – Saturday: 8:00 AM – 6:00 PM</p>
-                    <p className="text-xs font-semibold text-red-500 mt-0.5">Sunday Closed</p>
+                    <span className="font-bold text-gray-900 block uppercase tracking-wider text-[11px]">
+                      Opening Hours
+                    </span>
+                    <p className="text-gray-600 mt-0.5">Mon – Sat: 8:00 AM – 6:00 PM</p>
+                    <p className="text-[11px] font-bold text-[#E11D23] mt-0.5">Sunday Closed</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-[#206E66] shrink-0 mt-0.5" />
+                  <Phone className="w-4 h-4 text-[#E11D23] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-gray-900 block">Call / WhatsApp</span>
-                    <p className="text-[#206E66] font-bold">+254 745 131 313</p>
+                    <span className="font-bold text-gray-900 block uppercase tracking-wider text-[11px]">
+                      Call / WhatsApp
+                    </span>
+                    <p className="text-gray-900 font-bold mt-0.5">+254 745 131 313</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-8 border-t border-gray-100 mt-6 space-y-3">
+            <div className="pt-6 border-t border-gray-100 mt-6 space-y-2.5">
               <a
                 href={googleMapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#206E66] hover:bg-[#18534d] text-white px-6 py-3.5 rounded-2xl font-bold text-sm shadow-md shadow-[#206E66]/20 transition-all hover:-translate-y-0.5"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#E11D23] hover:bg-[#b81419] text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
               >
-                <Navigation className="w-4 h-4 fill-current" /> Get Directions
+                <Navigation className="w-3.5 h-3.5 fill-current" /> Get Directions
               </a>
               <a
                 href={googleMapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-2xl font-semibold text-xs transition-colors border border-gray-200/80"
+                className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors border border-gray-200"
               >
-                Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
+                Open in Maps <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
           {/* Embedded Google Map Frame */}
-          <div className="lg:col-span-8 relative min-h-[420px] rounded-3xl overflow-hidden border border-gray-200/80 shadow-lg shadow-gray-100/60 bg-gray-100">
+          <div className="lg:col-span-8 relative min-h-[380px] lg:min-h-full rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
             <iframe
               title="Bajwa Enterprises Tuktuk Spare Parts Map"
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: "420px" }}
+              style={{ border: 0, minHeight: "380px" }}
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
               src={mapEmbedUrl}
-            ></iframe>
+            />
           </div>
         </div>
       </div>
