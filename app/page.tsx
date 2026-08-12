@@ -121,12 +121,12 @@ export default function BajwaEnterprises() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
+            <div className="w-16 h-16 rounded-lg overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
               <Image
                 src={logo}
                 alt="Bajwa Enterprises Logo"
-                width={44}
-                height={44}
+                width={46}
+                height={46}
                 className="object-cover"
               />
             </div>
@@ -135,7 +135,7 @@ export default function BajwaEnterprises() {
                 BAJWA<span className="text-[#E11D23]">.</span>
               </span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#E11D23]">
-                — ENTERPRISES —
+                ENTERPRISES
               </span>
             </div>
           </div>
