@@ -168,7 +168,7 @@ export default function BajwaEnterprises() {
             className="flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#E11D23] transition-colors"
           >
             <Phone className="w-4 h-4 text-[#E11D23]" />
-            <span>0745 131313</span>
+            <span>0745 131313 | 0786 849691</span>
           </a>
         </div>
       </header>
