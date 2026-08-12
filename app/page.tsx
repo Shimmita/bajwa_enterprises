@@ -1,30 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
 import {
-  ShieldCheck,
   Award,
-  Layers,
+  CheckCircle,
   HeartHandshake,
-  Phone,
+  Layers,
   Mail,
   MapPin,
   MessageSquare,
+  Phone,
+  ShieldCheck,
   Smile,
   Truck,
-  CheckCircle,
 } from "lucide-react";
+import Image from "next/image";
+import React, { useState } from "react";
 
+import brakes_suspension from "../public/brakes_suspension.jpg";
+import tuk_engine from "../public/engine.jpeg";
+import gear from "../public/gear.jpg";
+import lights from "../public/lights.webp";
+import logo from "../public/logo.jpeg";
 import tukImage from "../public/tuk.png";
 import tukImage2 from "../public/tuk_tuk.png";
-import tuk_engine from "../public/engine.jpeg";
-import lights from "../public/lights.webp";
-import filters from "../public/filters.jpg";
-import gear from "../public/gear.jpg";
 import tyre from "../public/tyre.jpg";
-import brakes_suspension from "../public/brakes_suspension.jpg";
-import logo from "../public/logo.jpeg";
 import MapViewSection from "./components/mapview";
 
 // Inline brand SVGs to prevent dependency issues
@@ -162,14 +161,24 @@ export default function BajwaEnterprises() {
             </a>
           </nav>
 
-          {/* Direct Call Action */}
-          <a
-            href="tel:+254745131313"
-            className="flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#E11D23] transition-colors"
-          >
-            <Phone className="w-4 h-4 text-[#E11D23]" />
-            <span>0745 131313 | 0786 849691</span>
-          </a>
+          {/* maintain on large devices, small devices stack the hyperlinks  */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <a
+              href="tel:+254745131313"
+              className="flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#E11D23] transition-colors"
+            >
+              <Phone className="w-4 h-4 text-[#E11D23]" />
+              <span>0745 131313</span>
+            </a>
+
+            <a
+              href="tel:+254786849691"
+              className="flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#E11D23] transition-colors"
+            >
+              <Phone className="w-4 h-4 text-[#E11D23]" />
+              <span>0786 849691</span>
+            </a>
+          </div>
         </div>
       </header>
 
@@ -482,6 +491,10 @@ export default function BajwaEnterprises() {
                 <li className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#E11D23]" />
                   <span>0745 131313</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-[#E11D23]" />
+                  <span>0786 849691</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-[#E11D23]" />
